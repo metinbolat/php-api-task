@@ -1,10 +1,12 @@
 <?php
 
+namespace classes;
+
 class Login
 {
     private $apiUrl;
-    public $username;
-    protected $password;
+    private $username;
+    private $password;
 
     public function __construct($username, $password)
     {
@@ -37,7 +39,6 @@ class Login
         ]);
 
         $response = curl_exec($curl);
-        $err = curl_error($curl);
         curl_close($curl);
 
         session_start();
@@ -45,7 +46,7 @@ class Login
             $data = json_decode($response, true);
             $_SESSION['access_token'] = $data['oauth']['access_token'];
             $_SESSION['token_expiration'] = time() + $data['oauth']['expires_in'];
-            print_r($data);
+            header('Location: ../index.php');
         } else {
             $_SESSION["error"] = "An error occured during login, please try again.";
             header("Location: ../login.php");

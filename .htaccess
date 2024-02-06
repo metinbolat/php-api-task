@@ -1,0 +1,11 @@
+
+
+<Files index.php>
+  Order allow,deny
+  Allow from all
+</Files>
+
+<Files login.php>
+  Order allow,deny
+  Allow from all
+</Files>

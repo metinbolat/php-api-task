@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['access_token'])) {
-    $token_expiration = strtotime($_SESSION['token_expiration']);
+    $token_expiration = $_SESSION['token_expiration'];
     if (time() < $token_expiration) {
         header("Location: index.php");
         exit();
@@ -10,7 +10,7 @@ if (isset($_SESSION['access_token'])) {
         session_destroy();
     }
 }
-require_once 'functions/login-handler.php';
+require_once 'includes/login-handler.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +56,7 @@ require_once 'functions/login-handler.php';
         }
         ?>
 
-        <form method="POST" action="functions/login-handler.php">
+        <form method="POST" action="includes/login-handler.php">
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
             <div class="form-floating">
